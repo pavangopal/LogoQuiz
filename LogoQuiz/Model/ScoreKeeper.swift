@@ -37,6 +37,10 @@ final class ScoreKeeper {
         return currentScoreRange.score
     }
     
+    func pauseTimer() {
+        timer.invalidate()
+    }
+    
     private func resetTimer() {
         currentScoreRange = .master
         currentTime = 0

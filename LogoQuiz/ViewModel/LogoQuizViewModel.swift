@@ -80,4 +80,11 @@ final class LogoQuizViewModel {
         self.scoreKeeper.startTimer()
     }
     
+    func appMovedToBackground() {
+        scoreKeeper.pauseTimer()
+    }
+    
+    func appMovedToForeground() {
+        scoreKeeper.startTimer()
+    }
 }

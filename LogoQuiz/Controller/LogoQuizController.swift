@@ -38,8 +38,24 @@ final class LogoQuizController: UIViewController {
         super.viewDidLoad()
         setupViews()
         viewModel.fetchLogos()
+        
+        setupNotifications()
     }
     
+    private func setupNotifications() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    @objc private func appMovedToBackground() {
+        viewModel.appMovedToBackground()
+    }
+    
+    @objc private func appMovedToForeground() {
+        viewModel.appMovedToForeground()
+    }
     
     private func setupViews() {
         view.backgroundColor = .white
